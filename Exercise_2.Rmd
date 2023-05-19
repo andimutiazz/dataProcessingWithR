@@ -1,0 +1,84 @@
+# In all below tasks create your own toy objects i.e. named vectors, non-empty vectors and lists etc.
+# 
+# Task 1: Write a R program to find the levels of factor of a given vector.
+x <-  factor(c("a", "b", "c", "d"), levels=c("a", "b", "c", "d"), ordered = T)
+x
+sort(x)
+
+# Task 2: Write a R program to change the first level of a factor with another level of a given factor.
+levels(x)[1] = "e"
+x
+
+# Task 3: Write a R program to create an ordered factor from data consisting of the names of months.
+month <- factor(c("January", "February","March","April","May","June","July","August","September","October","November","December"), levels = c("January", "February","March","April","May","June","July","August","September","October","November","December"), order = T )
+month
+
+# Task 4: Write a R program to concatenate two given factors in a single factor. 
+table(factor(c("male", "female", "male", "male", "female")),factor(c("low", "low", "high", "high", "high")))
+y1 <- facotr(sample(x = 20:2000, size = 10, replace = FALSE))
+y2 <- factor(sample(x = 30:300, size = 10, replace = F))
+y1
+y2
+y = factor(c(levels(y1)[y1], levels(y2)[y2]))
+order(y)
+
+# Task 5: Write a R program to count the specific value in a given vector.
+x <- factor(c(1,2,3,4,1, 1, 5))
+sum(x==1)
+
+# Task 6: Write a R program to extract the five of the levels of factor created from a random sample from the LETTERS.
+x <- factor(sample( x = LETTERS, size = 10, replace = F))
+table(x[1:5])
+
+# Task 7: Write a R program to create a list containing strings, numbers, vectors and a logical values.
+list <- list("aku", "ok", 5, 6, 1:5, c(1, 2, 3), T )
+list
+
+# Task 8: Write a R program to list containing a vector, a matrix and a list and give names to the elements in the list.
+list <- list(a = c("a", "b", "c"), b = matrix(c(1,2,3,4), nrow = 2 )) 
+list
+
+# Task 9: Write a R program to select second element of a given nested list.
+list <- list(a = 1:10, b = list(1,2,3))
+list
+list[[2]][1]
+
+# Task 10: Write a R program to create a list containing a vector, a matrix and a list and update the last element.
+list <- list(a = c("a", "b", "c"), b = matrix(c(1,2,3,4), nrow = 2), d = list(1:5, "cie"))
+list[3] = "chers!"
+list
+
+
+# Task 11: Write a R program to merge two given lists into one list.
+y1 <- list("good", 1:10)
+y2 <- list("aye", T)
+str(c(y1, y2))
+
+# Task 12: Write a R program to convert a given list to vector.
+y1 <- list(1:10)
+y11 = unlist(y1)
+y11
+
+# Task 13: Write a R program to count number of objects in a given list.
+list <- list(a = c("a", "b", "c"), b = matrix(c(1,2,3,4), nrow = 2), d = list(1:5, "cie"))
+length(list)
+
+# Task 14: Write a R program to assign NULL to a given list element.
+y1 <- list(1:10)
+y1[2] = list(NULL)
+y2
+
+
+# Task 15: Write a R program to Add 10 to each element of the first vector in a given list.
+list <- list(c= 5:20, a = c("a", "b", "c"), b = matrix(c(1,2,3,4), nrow = 2), d = list(1:5, "cie")) 
+list$c = list$c + 10
+list$c
+
+# Task 16: Write a R program to get the length of the first two vectors of a given list.
+length(list$c)
+length(list$a)
+
+# Task 17: Write a R program to find all elements of a given list that are not in another given list.
+y1 <- list(1:10)
+y2 <- list(5:15)
+setdiff(y1, y2)

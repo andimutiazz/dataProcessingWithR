@@ -1,0 +1,143 @@
+# Task 1:
+# a) Create the "letter" vector containing upper case letters from the basic alphabet (26 letters).
+letter <- c(LETTERS)
+letter
+length(letter)
+# b) Create the "numbers" vector containing consecutive integers from 1 to "n",
+# where "n" is the number of elements from the "letter" vector (do not enter this value manually).
+n <- length(letter)
+numbers <- seq(from = 1, to = n)
+numbers
+
+
+# c) Create the "letters_numbers" vector connecting the "letters" and "numbers" element by element by the sign "_".
+letters_numbers <- paste(letter, numbers, sep = "_")
+letters_numbers
+
+# d) Create the attribute on the "letters_numbers" vector indicating the type of the vector.
+
+attributes(letters_numbers)
+attr(letters_numbers, which = "the type of the vector") <- typeof(letters_numbers)
+letters_numbers
+
+
+# Task 2:
+# a) Create the "list_2" list with 5 default values.
+list_2 <- list(1, 5, "laper", T, 1:5)
+list_2
+
+# b) Create the "vector_2" vector by drawing 5 integers (without repeats) from a vector from 1 to 10.
+#    The initial value of the random number generator should be set to 123.
+
+set.seed(123)
+vector_2 <- sample(1:10, 5, replace = FALSE)
+vector_2
+
+# c) Using the lapply function, insert in the next elements of the "list_2" list (list has 5 elements, see point a) 
+#    vector repeating a specific number from the "vector_2" vector (you should get 3,8,4,7,6) 
+#    so many times, what number is contained under the investigated element of the vector "vector_2", 
+#    e.g. for the number 4 the vector is of length 4 and each element will have number 4.
+
+vector_2 <- as.list(vector_2)
+vector_2
+
+list_2 <- list(1, 5, "laper", T, 1:5, list(vector_2))
+list_2
+
+lapply(list_2, )
+
+repeat_num <- function(num) {
+  vec <- rep(num, vector_2[num])
+  return(vec)
+}
+
+# Use lapply to insert the vectors into list_2
+list_2 <- lapply(seq_along(list_2), function(i) {
+  if (is.numeric(list_2[[i]])) {
+    repeat_num(list_2[[i]])
+  } else {
+    list_2[[i]]
+  }
+})
+
+# View the modified list
+list_2
+
+# d) Convert "list_2" list into a vector of integers.
+vector3 <- unlist(list_2)
+vector3 <- as.integer(vector3)
+vector3
+
+# 
+# Task 3:
+# a) Create function that indicates the outlier observations of the given vector of real numbers (x <-rcauchy(10)) using the quartile rule: <Q1-1.5*(Q3-Q1), >Q3+1.5*(Q3-Q1).
+
+
+# b) The function should return an object with the given attributes containing information:
+#   a. what values are outlier
+#   b. what values are not outlier
+#   c. outlier indexes
+#   d. non-outlier indexes
+# c) (use the functions quantile, which, attr).
+# 
+# Task 4: 
+# a) Import the file Exercise_4.txt into "Table_4" object.
+table_4 <- read.table(file = "C:\\Users\\s218251\\Downloads\\Exercise_4.txt", header = T, sep = "&")
+table_4
+
+# b) Give the table the attribute "My_name" informing about your name. Display all table attributes.
+attr(table_4 = table_4, which = "My_name") <- "Andi Mutiah Azzahra"
+attributes(table_4)
+
+# c) Convert above table to "List_4" list.
+list_4 <- as.list(table_4)
+list_4
+
+# d) Create a function that converts any numerical input vector into a subtitle vector according to the following rule:
+#    if the value is less than or equal to 1.5 - enter "less than 1.5", otherwise "more than 1.5".
+# Define the function
+convert_vector <- function(input_vector) {
+  # Create an empty vector to store the subtitle values
+  subtitle_vector <- vector(length = length(input_vector))
+  
+  # Loop through each element of the input vector
+  for (i in 1:length(input_vector)) {
+    # Check if the element is less than or equal to 1.5
+    if (input_vector[i] <= 1.5) {
+      subtitle_vector[i] <- "less than 1.5"
+    } else {
+      subtitle_vector[i] <- "more than 1.5"
+    }
+  }
+  
+  # Return the subtitle vector
+  return(subtitle_vector)
+}
+
+# Test the function with an example input vector
+input_vector <- List_4
+subtitle_vector <- convert_vector(input_vector)
+print(subtitle_vector)
+
+# e) Apply the created function on the "List_4" list items from point c).
+
+convert_vector <- function(input_vector) {
+  # Create an empty vector to store the subtitle values
+  subtitle_vector <- vector(length = length(input_vector))
+  
+  # Loop through each element of the input vector
+  for (i in 1:length(input_vector)) {
+    # Check if the element is less than or equal to 1.5
+    if (input_vector[i] <= 1.5) {
+      subtitle_vector[i] <- "less than 1.5"
+    } else {
+      subtitle_vector[i] <- "more than 1.5"
+    }
+  }
+  
+  # Return the subtitle vector
+  return(subtitle_vector)
+}
+
+# View the List_4 with the added subtitle attribute
+print(List_4)

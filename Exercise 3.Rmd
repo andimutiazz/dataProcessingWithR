@@ -1,0 +1,89 @@
+#1a) Create the "letter" vector containing upper case letters from the basic alphabet (26 letters)
+```{r}
+letter_vector = paste(LETTERS)
+```
+#1b) Create the "numbers" vector containing consecutive integers from 1 to "n"
+```{r}
+n = 9
+number_vector = paste(1:n)
+```
+#1c) Create the "letters_numbers" vector connecting the "letters" and "numbers" element by element by the sign "_"
+```{r}
+letters_numbers = paste(letters, 1:26, sep="_")
+```
+#1d) Create the attribute on the "letters_numbers" vector indicating the type of the vector
+```{r}
+attr(letters_numbers, "type") = "chr"
+```
+
+
+#*2a) Create the "list_2" list with 5 default values.
+```{r}
+list_2 = vector("list", 5)
+```
+#*2b) Create the "vector_2" vector by drawing 5 integers (without repeats) from a vector from 1 to 10.
+The initial value of the random number generator should be set to 123.
+```{r}
+set.seed(123)
+vector_2 = sample(1:10, size=5, replace = FALSE)
+```
+#*2c) Using the lapply function, insert in the next elements of the "list_2" list (list has 5 elements, see point a) 
+vector repeating a specific number from the "vector_2" vector (you should get 3,8,4,7,6) 
+so many times, what number is contained under the investigated element of the vector "vector_2", 
+e.g. for the number 4 the vector is of length 4 and each element will have number 4.
+```{r}
+#write own function
+lapply(list_2, append, values=rep(vector_2, times=vector_2))
+```
+*2d) Convert "list_2" list into a vector of integers.
+```{r}
+integer_vectors = as.vector(list_2)
+```
+
+
+#3 Create function that indicates the outlier observations of the given vector of real numbers (x <-rcauchy(10)) using the quartile rule: <Q1-1.5*(Q3-Q1), >Q3+1.5*(Q3-Q1).
+The function should return an object with the given attributes containing information:
+a. what values are outlier
+b. what values are not outlier
+c. outlier indexes
+d. non-outlier indexes
+(use the functions quantile, which, attr)
+```{r}
+out_obs = function(x = rcauchy(10)){
+  the_quant = quantile(x)
+  low_out = the_quant[2] - 1.5*(the_quant[4]-the_quant[2])
+  high_out = the_quant[4] + 1.5*(the_quant[4]-the_quant[2])
+  attr(x, "outlier_values") = x[x<low_out | x>high_out]
+  attr(x, "non_outlier_values") = x[x>low_out&x<high_out | x<high_out&x>low_out]
+  attr(x, "outlier_indexes") = which(x<low_out | x>high_out)
+  attr(x, "non_outlier_indexes") = which(x>low_out&x<high_out | x<high_out&x>low_out)
+  return(x)
+}
+```
+
+
+#4a) Import the file Exercise_4.txt into "Table_4" object
+```{r}
+filepath = "C:/Users/s216731/Downloads/Exercise_4.txt"
+Table_4 = read.table(filepath, header = TRUE, sep = "&")
+```
+#4b) Give the table the attribute "My_name" informing about your name. Display all table attributes.
+```{r}
+attr(Table_4, "My_name") = "Choirul Rahmaditya"
+str(Table_4)
+```
+#4c) Convert above table to "List_4" list.
+```{r}
+List_4 = as.list(Table_4)
+```
+#4d) Create a function that converts any numerical input vector into a subtitle vector according to the following rule:
+if the value is less than or equal to 1.5 - enter "less than 1.5", otherwise "more than 1.5".
+```{r}
+conv = function(x) {
+  ifelse(x<1.5, "less than 1.5", "more than 1.5")
+}
+```
+#4e) Apply the created function on the "List_4" list items from point c).
+```{r}
+conv(unlist(List_4))
+```
